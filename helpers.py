@@ -2,9 +2,12 @@
 #import StringIO
 from urllib.request import urlretrieve
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 import zipfile
 import os
 import os.path
+
+EXAMPLE_IMG_INDEX = 26487
 
 data_dir = os.path.join('.', 'data', 'immutable')
 
@@ -83,3 +86,16 @@ def get_traffic_signs_data(force=False):
     testing_file_path = os.path.join(data_dir, 'test.p')
     
     return training_file_path, validation_file_path, testing_file_path
+
+def print_example(X, y, img_num = None):
+    """Print a given example"""
+    if img_num == None:
+        img_num = EXAMPLE_IMG_INDEX
+    
+    print(y[img_num])
+    print(X[img_num].shape)
+    
+    plt.imshow(X[img_num])
+    plt.show()
+    
+    print(X[img_num])
